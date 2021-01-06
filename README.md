@@ -6,17 +6,28 @@ other printers that expose statistics as a CSV file under `/etc/mnt_info.csv`.
 
 ## Usage
 
-```
+```bash
 $ brother-exporter --help
 Usage of brother-exporter:
   -listen string
     	Host and port to listen on (default ":9055")
 ```
 
-## Example prometheus configuration
+Docker:
 
+```bash
+$ docker run --rm -p '9055:9055' thej6s/brother-exporter
 ```
 
+## Example prometheus configuration
+
+```yaml
+  - job_name: 'brother'    
+    scrape_interval: 5m    
+    static_configs:    
+      - targets: [ 'brother_exporter:9055' ]    
+    params:    
+      host: [ '192.168.99.15' ]    
 ```
 
 ## Example of exposed statistics
