@@ -5,7 +5,7 @@ WORKDIR /build
 RUN go build -o /brother-exporter /build/main.go
 
 
-FROM alpine:3.13
+FROM alpine:3.15
 
 RUN apk add --no-cache libc6-compat
 COPY --from=builder /brother-exporter /usr/local/bin/brother-exporter
